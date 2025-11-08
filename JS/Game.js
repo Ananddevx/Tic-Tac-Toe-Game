@@ -1,43 +1,29 @@
 export default class Game {
   constructor() {
-    this.turn = "X";
     this.board = new Array(9).fill(null);
-    // console.log("this.board:", this.board);
+    this.turn = "X";
   }
 
   nextTurn() {
-    if (this.turn == "X") {
-      this.turn = "O";
-    } else {
-      this.turn = "X";
-    }
+    this.turn = this.turn === "X" ? "O" : "X";
   }
 
   makeMove(i) {
-
-    if (this.endOfGame()) {
+    // invalid move
+    if (this.endOfGame() || this.board[i]) {
       return;
     }
 
-    if (this.board[i]) {
-      return;
-    }
-
-   
     this.board[i] = this.turn;
 
-    // console.log("this.board:", this.board);
-    
-    let winnigCombination = this.findWinningCombinations();
-
-    if (!winnigCombination) {
+    // if game is still going
+    if (!this.findWinningCombinations()) {
       this.nextTurn();
     }
-    
   }
 
   findWinningCombinations() {
-    const WinningCombinations = [
+    const winningCombos = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -48,25 +34,24 @@ export default class Game {
       [2, 4, 6],
     ];
 
-    for (const combination of WinningCombinations) {
-      const [a, b, c] = combination;
+    for (const combo of winningCombos) {
+      const [a, b, c] = combo;
       if (
         this.board[a] &&
         this.board[a] === this.board[b] &&
         this.board[a] === this.board[c]
       ) {
-        return combination;
+        return combo;
       }
     }
+
     return null;
   }
 
   endOfGame() {
-    let winnigCombination = this.findWinningCombinations();
-    if (winnigCombination) {
-      return true;
-    } else {
-      return false;
-    }
+    return (
+      this.findWinningCombinations() !== null ||
+      this.board.every((cell) => cell !== null)
+    );
   }
 }

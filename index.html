@@ -1,64 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-      
-    <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="./CSS/slider.css">
-    <title>Tic Tac Toe</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIC-TAC-TOE</title>
+  <link rel="stylesheet" href="./CSS/style.css" />
+  <link rel="stylesheet" href="./CSS/slider.css" />
 </head>
+
 <body>
-
-    <div class="navbar ">
-        <div class="logo">
-            Tic-Tac-Toe <span>By Teju</span> 
-        </div>
-        <div class="darkBtn">Dark Mode
-            <label class="switch">
-                <input type="checkbox" id="btn" checked>
-                <span class="slider round"></span>
-            </label>
-        </div>
+  <!-- 🌟 Navbar -->
+  <div class="navbar">
+    <div class="logo">TIC–TAC–TOE</div>
+    <div class="darkBtn">
+      Dark Mode
+      <label class="switch">
+        <input type="checkbox" id="btn" checked />
+        <span class="slider round"></span>
+      </label>
     </div>
-    <div class="container">
-        <div class="left">
-            <div class="title">
-                <h1>
-                    Let's play <br> the Tic-Tac-Toe <br> Game..!
-                </h1>
+  </div>
 
-            </div>
-            <div class="restart">Start a New Game</div>
-           
-        </div>
-        <div class="right">
-            <div class="game">
-                <div class="header">
-                    <div class="player-x">
-                        <span>Player X</span>
-                    </div>
-                    <div class="player-o">
-                        <span>Player O</span>
-                    </div>
-                </div>
-                <div class="board">
-                    <div class="board-tile" data-index="0"></div>
-                    <div class="board-tile" data-index="1"></div>
-                    <div class="board-tile" data-index="2"></div>
-                    <div class="board-tile" data-index="3"></div>
-                    <div class="board-tile" data-index="4"></div>
-                    <div class="board-tile" data-index="5"></div>
-                    <div class="board-tile" data-index="6"></div>
-                    <div class="board-tile" data-index="7"></div>
-                    <div class="board-tile" data-index="8"></div>
-                </div>
-            </div>
-        </div>
+  <!-- 🏠 Start Screen -->
+  <div class="start-screen" id="startScreen">
+    <h1>Welcome to Tic-Tac-Toe!</h1>
+    <p>Select Game Mode:</p>
+    <div class="mode-buttons">
+      <button id="singlePlayer">🎮 Single Player</button>
+      <button id="multiPlayer">👫 Multiplayer</button>
     </div>
-    
+  </div>
+
+  <!-- ❌⭕ Choose Symbol Screen -->
+  <div class="choose-screen" id="chooseScreen" style="display:none;">
+    <h2>Choose Your Symbol</h2>
+    <div class="symbol-buttons">
+      <button id="chooseX">❌ X</button>
+      <button id="chooseO">⭕ O</button>
+    </div>
+  </div>
+
+  <!-- 🎮 Game Screen -->
+  <div class="container" id="gameContainer" style="display:none;">
+    <div class="left">
+      <div class="title">
+        <h1>Let's play Tic-Tac-Toe!</h1>
+      </div>
+
+      <div class="turn-display" id="turnDisplay">Your Turn</div>
+
+      <div class="scoreboard">
+        <h3>Scoreboard</h3>
+        <div class="score-rows">
+          <p>Player X: <span id="scoreX">0</span></p>
+          <p>Player O: <span id="scoreO">0</span></p>
+          <p>Computer: <span id="scoreComp">0</span></p>
+        </div>
+      </div>
+
+      <div class="timer">⏱ <time id="turnTimer">3</time>s</div>
+
+      <!-- ✅ FIXED: Correct id for Start button -->
+      <button class="start-btn" id="startBtn">Start</button>
+    </div>
+
+    <div class="right">
+      <div class="game">
+        <div class="header">
+          <div class="player-x"><span>Player X</span></div>
+          <div class="player-o"><span>Player O</span></div>
+        </div>
+
+        <div class="board">
+          <div class="board-tile" data-index="0"></div>
+          <div class="board-tile" data-index="1"></div>
+          <div class="board-tile" data-index="2"></div>
+          <div class="board-tile" data-index="3"></div>
+          <div class="board-tile" data-index="4"></div>
+          <div class="board-tile" data-index="5"></div>
+          <div class="board-tile" data-index="6"></div>
+          <div class="board-tile" data-index="7"></div>
+          <div class="board-tile" data-index="8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎉 Popup Overlay -->
+  <div id="popupOverlay" class="popup-overlay" style="display:none;">
+    <div class="popup-card" id="popupCard">
+      <div class="popup-emoji" id="popupEmoji">🎉</div>
+      <h2 id="popupMessage">You Win!</h2>
+      <button id="popupButton">Try Again</button>
+    </div>
+  </div>
+
+  <!-- 📜 Script -->
+  <script src="./JS/script.js" type="module"></script>
 </body>
 </html>
-<script src="./JS/script.js" type="module"></script>
